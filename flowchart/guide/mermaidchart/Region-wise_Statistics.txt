@@ -1,0 +1,15 @@
+---
+config:
+  theme: neo-dark
+---
+flowchart TD
+    A(((LSFM))) 
+    A --> B[3D autofluorescence image]
+    B --> C(Registration to an average template brain) 
+    C --> D(Optional: warp_to_native: Warp the atlas to full-resolution tissue space and save as .zarr)
+    A --> E[3D immunofluorescence image]
+    E --> F(seg_copy_tifs & seg_ilastik: Segment c-Fos+ cells using Ilastik)
+    F --> G(rstats: Perform regional cell counting and volume measurements)
+    D --> G
+    G --> H(utils_agg_files: Aggregate CSV outputs from rstats across all sample folders)
+    H --> I(rstats_summary: Plot cell densities by region and summarize results)

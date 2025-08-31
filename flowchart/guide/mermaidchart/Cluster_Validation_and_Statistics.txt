@@ -1,0 +1,15 @@
+---
+config:
+  theme: neo-dark
+---
+flowchart TD    
+    A(cstats_org_data: Organize cell/label density data from cluster validation)
+    A --> B(cstats_group_data: Pool left and right hemisphere data)
+    B --> C(utils_prepend: Prepend CSV names with conditions)
+    C --> D(cstats: Run statistics to determine cluster validity)
+    D --> E(cstats_index: Create valid cluster maps and CSVs for sunburst plots)
+    E --> F(cstats_brain_model: Create files for 3D brain models)
+    F --> G(cstats_table: Create tables summarizing top regions and volumes)
+    G --> H(cstats_prism: Generate CSVs for plotting bar graphs with Prism)
+    H --> I(cstats_legend: Create legend files defining region abbreviations)
+    I --> J(Summarize cluster validation rates, aggregate files for 3D brains, compile SI tables, etc.)

@@ -1,0 +1,17 @@
+---
+config:
+  theme: neo-dark
+---
+flowchart TD
+    A(((LSFM))) 
+    A --> B[Stitch z-stacks if required]
+    B --> C(vstats_prep: Optionally remove autofluorescence and warp immunofluo images to atlas space)
+    C --> D(vstats_z_score: Optionally z-score IF images from each brain individually)
+    D --> E(utils_agg_files: Aggregate atlas-space IF images from all sample folders into the current directory)
+    E --> F(vstats_whole_to_avg: Optionally smooth image and average left/right sides)
+    F --> G(Check inputs for vstats: Open IF images and the atlas in FSLeyes to confirm aligment with the atlas and other IF images)
+    G --> H(Prep inputs for vstats: Add IF images to the current directory, without other .nii.gz files)
+    H --> I(utils_prepend: Prepend a one-word condition to each IF image)
+    I --> J(For ANOVA designs, run fsl and set up the design. If two groups are present, proceed to the next step)
+    J --> K(vstats: Run voxel-wise analyses using FSL's randomise tool)
+    K --> L(View 1-p value maps in FSLeyes and consult 'Cluster-wise stats' for multiple comparisons correction and cluster validation)

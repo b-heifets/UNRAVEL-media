@@ -1,0 +1,23 @@
+---
+config:
+  theme: neo-dark
+---
+flowchart TD
+    A(((LSFM))) 
+    A --> B[Stitched 3D autofluorescence image]
+    B --> C(Resample image to 50 µm resolution)
+    C --> D(Segment tissue with Ilastik to mask external voxels)
+    D --> E(Register image to an average template brain) 
+    A --> F[Stitched 3D immunofluorescence image]
+    F --> G(Remove autofluorescence from IF images)
+    G --> H(Warp IF images to atlas space)
+    E --> H
+    H --> I(Preprocess IF images: z-score, smooth, and average left/right sides)
+    I --> J(Perform voxel-wise statistical analyses)
+    J --> K(Apply FDR correction of 1-p value maps)
+    K --> L(Warp significant voxel clusters back to tissue space)
+    F --> N(Segment c-Fos+ cells or other features using Ilastik)
+    L --> M(Validate clusters with cell/label density measurements)
+    N --> M
+    D --> I
+    E --> L

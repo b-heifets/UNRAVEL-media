@@ -1,0 +1,13 @@
+---
+config:
+  theme: neo-dark
+---
+flowchart TD
+    A(vstats: Generates 1-p value maps with vox_p in the filename)
+    A --> B(cstats_fdr_range: Input a 1-p map to find FDR q values that yield clusters)
+    B --> C(cstats_fdr: Apply FDR correction on the 1-p map to identify clusters of significant voxels)
+    C --> D(cstats_mirror_indices: For whole-brains, recursively mirror cluster maps in ./stats/)
+    D --> E(seg_copy_tifs: Copy select full resolution TIFFs for Ilastik training)
+    E --> F(seg_ilastik: Perform pixel classification with a trained Ilastik project)
+    F --> G(cstats_validation: Warp clusters from atlas to full resolution tissue space, count cells, and calculate cluster volumes)
+    G --> H(cstats_summary: Aggregate and analyze cluster validation data)

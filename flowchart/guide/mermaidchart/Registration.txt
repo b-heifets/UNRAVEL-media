@@ -1,0 +1,16 @@
+---
+config:
+  theme: neo-dark
+---
+flowchart TD
+    A(((LSFM))) 
+    A --> B[Stitch z-stacks if necessary]
+    B --> C(io_metadata: Save raw voxel dimentions in microns to ./sample??/parameters/metadata.txt)
+    C --> D(reg_prep: Resample autofluorescence images to 50 µm resolution for registration)
+    D --> E(seg_copy_tifs: Copy select slices from 50 µm autofl images to create brain masks using Ilastik)
+    E --> F(Train Ilastik using pixel classification to segment autofl brains)
+    F --> G(seg_brain_mask: Generate autofl brain masks with Ilastik and apply them to the 50 µm images)
+    G --> H(Optionally use 3D Slicer to make the masked autofl image and mask better match the average template)
+    H --> I(reg: Register the template brain with the masked autofl images and warp the atlas)
+    I --> J(reg_check and reg_check_fsleyes: Aggregate padded autofl images and warped atlas images from reg)
+    J --> K(Assess registration quality in FSLeyes and refine if necessary by repeating the 3D Slicer step, etc.)
