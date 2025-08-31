@@ -16,6 +16,10 @@ This repo contains **static assets (logos, figures, screenshots, GIFs, and other
 
 Separating media from the main codebase keeps the primary [UNRAVEL repository](https://github.com/b-heifets/UNRAVEL) lightweight while providing **stable URLs**.
 
+## Example path:
+
+https://b-heifets.github.io/UNRAVEL-media/logos/UNRAVEL_logo.png
+
 ---
 
 ## License
